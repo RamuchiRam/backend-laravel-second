@@ -10,6 +10,9 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <div>
+                category: {{$post->category->name}}
+            </div>
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <p style="margin: 10px; background-color:white">
                     slug: {{$post->slug}}
@@ -53,7 +56,7 @@
             <form action="{{ route('posts.tags.update', $post) }}" method="POST">
                 @csrf
 
-                <label for="tags" class="block font-medium text-gray-700 mb-1">Теги:</label>
+                <label for="tags" class="block font-medium text-gray-700 mb-1">Tags:</label>
 
                 <select name="tags[]" id="tags" multiple class="border-gray-400 border-2 rounded px-4 py-2 focus:outline-none focus:border-blue-400">
                     @foreach($tags as $tag)
@@ -65,7 +68,7 @@
                     @endforeach
                 </select>
 
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded mt-3">Сохранить</button>
+                <button type="submit" class="px-4 py-2 font-bold bg-blue-500 rounded hover:bg-blue-700">Save</button>
             </form>
 
         </div>

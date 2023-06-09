@@ -4,6 +4,7 @@
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,10 +41,20 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
     Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+
     Route::post('/posts/{post}/tags/attach', [PostController::class, 'attachTags'])->name('posts.tags.attach');
     Route::delete('/posts/{post}/tags/{tag}', [PostController::class, 'detachTag'])->name('posts.tags.detach');
     Route::post('/posts/{post}/tags', [PostController::class, 'updateTags'])->name('posts.tags.update');
+
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create'); //create
+    Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show'); //show - read
+    Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit'); //edit
+    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+    Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy'); //destroy - delete
 });
 
 require __DIR__.'/auth.php';
